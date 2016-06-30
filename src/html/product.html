@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <title>smartERP</title>
+    <link rel="stylesheet" type="text/css" href="../css/product.css">
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'>
+    </script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+
+</head>
+
+<body>
+
+    <div id="body_menu">
+        <ul id="top_menu">
+            <li> <a href="">Home Page</a> </li>
+            <li> <a href="login.html">Log In</a> </li>
+            <li> <a href="chat.html">Chat</a> </li>
+        </ul>
+    </div>
+
+    <div id="lhc_status_container_page">&nbsp;</div>
+
+
+
+    <!-- Customized JS Script to add the chat box -->
+    <script type="text/javascript">
+
+        // Change this to get the users actual name
+        var userString = "autoName";
+        // Change this to get the users actual email
+        var userEmail = "autoEmail@email.com"
+        var LHCChatOptions = {};
+        LHCChatOptions.attr = new Array();
+
+        LHCChatOptions.opt = {
+            widget_height: 190,
+            widget_width: 300,
+            popup_height: 520,
+            popup_width: 500
+        };
+
+
+
+        LHCChatOptions.attr_prefill = new Array();
+
+        // have to change the settings in the console to hide the default username/email because that js is on their end
+        // pass in the userString and userEmail vars created earlier into the value field here.
+        LHCChatOptions.attr_prefill.push({'name':'username','value':userString,'show':'on'});
+        LHCChatOptions.attr_prefill.push({'name':'email','value':userEmail,'show':'on'});
+
+
+        console.log("The username for this chat is " + userString);
+        console.log("The email for this chat is " + userEmail);
+
+        (function() {
+            var po = document.createElement('script');
+            po.type = 'text/javascript';
+            po.async = true;
+            var refferer = (document.referrer) ? encodeURIComponent(document.referrer) : '';
+            var location = (document.location) ? encodeURIComponent(document.location) : '';
+            po.src = 'https://smarterppractice.livehelperchat.com/chat/getstatus/(click)/internal/(position)/bottom_right/(check_operator_messages)/true/(top)/350/(units)/pixels/(leaveamessage)/true?r=' + refferer + '&l=' + location;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+
+
+</body>
+
+</html>

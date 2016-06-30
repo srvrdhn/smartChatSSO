@@ -1,0 +1,77 @@
+div#body_menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: black;
+    text-align: center;
+    opacity: 0.5;
+}
+ul#top_menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: transparent;
+}
+ul#top_menu li {
+    display: inline;
+}
+ul#top_menu li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    height: 22px;
+    text-decoration: none;
+    transition-duration: 0.4s;
+    font-size: 1.15em;
+    font-family: "Helvetica", sans-serif;
+}
+ul#top_menu li a:hover {
+    background-color: #0288D1;
+    color: white;
+    border-bottom: solid #e53935
+}
+.center_title {
+    width: 100%;
+    height: auto;
+    bottom: 0px;
+    top: 0px;
+    left: 0;
+    position: absolute;
+    text-align: center;
+}
+.center_text {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    top: 30%;
+    left: 46%;
+    color: white;
+    text-align: center;
+    font-family: "Helvetica", sans-serif;
+    font-size: 3.0em;
+    white-space: nowrap;
+}
+.center_text_small {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    top: 45%;
+    left: 45%;
+    margin-top: -25px;
+    margin-left: -50px;
+    color: white;
+    text-align: center;
+    font-family: "Helvetica", sans-serif;
+    font-size: 1.3em;
+    white-space: nowrap;
+}
+.google_button {
+    vertical-align: middle !important;
+    position: absolute;
+    top: 75px;
+    left: 715px;
+}

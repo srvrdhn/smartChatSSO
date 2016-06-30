@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <title> Log In</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../css/global.css">
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'>
+    </script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+
+</head>
+
+<body>
+
+    <!--Google Font - Work Sans-->
+    <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+    <div class="container">
+        <div class="profile">
+            <button class="profile__avatar" id="toggleProfile">
+                <img src="https://pbs.twimg.com/profile_images/507231357135630336/6KNrJ8jN.jpeg" alt="Avatar" />
+            </button>
+            <div class="profile__form">
+                <div class="profile__fields">
+                    <div class="field">
+                        <input type="text" id="fieldUser" class="input" required pattern=.*\S.* />
+                        <label for="fieldUser" class="label">Username</label>
+                    </div>
+                    <div class="field">
+                        <input type="password" id="fieldPassword" class="input" required pattern=.*\S.* />
+                        <label for="fieldPassword" class="label">Password</label>
+                    </div>
+                    <div class="profile__footer">
+
+                        <button class="btn" id="log_button">
+                            Log In
+                        </button>
+
+                        <script>
+                            document.getElementById("log_button").addEventListener("click", authTheUser);
+
+                            function authTheUser() {
+
+                                var ref = new Firebase("https://smarterplogin.firebaseio.com");
+                                var fieldUser = document.getElementById('fieldUser').value;
+                                var fieldPassword = document.getElementById('fieldPassword').value;
+
+
+                                ref.authWithPassword({
+                                    email: fieldUser,
+                                    password: fieldPassword
+                                }, function(error, authData) {
+                                    if (error) {
+                                        console.log("Login Failed!", error);
+                                    } else {
+                                        console.log("Authenticated successfully with payload:", authData);
+
+                                        window.open("product.html", "_self");
+                                        console.log("Opening the product page");
+
+                                    }
+                                });
+
+                            }
+                        </script>
+
+
+                        <button class="btn" id="createuser_button">
+                            Create User
+                        </button>
+
+                        <script>
+                            document.getElementById("createuser_button").addEventListener("click", createUserFunc2);
+
+                            function createUserFunc2() {
+                                var ref = new Firebase("https://smarterplogin.firebaseio.com");
+                                var fieldUser = document.getElementById('fieldUser').value;
+                                var fieldPassword = document.getElementById('fieldPassword').value;
+
+                                ref.createUser({
+                                    email: fieldUser,
+                                    password: fieldPassword
+                                }, function(error, userData) {
+                                    if (error) {
+                                        switch (error.code) {
+                                            case "EMAIL_TAKEN":
+                                                console.log("The new user account cannot be created because the email is already in use.");
+                                                break;
+                                            case "INVALID_EMAIL":
+                                                console.log("The specified email is not a valid email.");
+                                                break;
+                                            default:
+                                                console.log("Error creating user:", error);
+                                        }
+                                    } else {
+                                        console.log("Successfully created user account with uid:", userData.uid);
+                                    }
+                                });
+                            }
+                        </script>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="../js/login.js"></script>
+
+
+</body>
+
+</html>
