@@ -561,7 +561,7 @@ return array (
     		'module' => 'chat',
     		'view' => 'startchat'
     	),
-      ),	
+      ),
       'geo' =>
       array (
     	'locale' => 'ka_KA',
@@ -579,7 +579,7 @@ return array (
     		'module' => 'chat',
     		'view' => 'startchat'
     	),
-      ),	
+      ),
       'fin' =>
       array (
     	'locale' => 'fi_FI',
@@ -597,7 +597,7 @@ return array (
     		'module' => 'chat',
     		'view' => 'startchat'
     	),
-      ),	
+      ),
       'alb' =>
       array (
     	'locale' => 'sq_AL',

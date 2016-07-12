@@ -8,10 +8,44 @@
     </script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
 
+    <!-- Google app client ID -->
+    <meta name="google-signin-client_id" content="312291613933-t9fcg4802l0ha5ig1r6gv8brv7bf0ff0.apps.googleusercontent.com">
+    <!-- Used to implement Google Sign-In -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!-- Linked In Log in -->
+    <script type="text/javascript" src="//platform.linkedin.com/in.js">
+        api_key: 75ny71ms6zvhz1
+        onLoad:  onLinkedInSignIn
+        authorize: false
+        lang: en_US
+    </script>
+
+    <!-- Facebook LogIn Setup Script -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '546134488904689',
+          xfbml      : true,
+          version    : 'v2.6'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
 </head>
+
+
 
 <body>
 
+    <!-- Top menu bar -->
     <div id="body_menu">
         <ul id="top_menu">
             <li> <a href="">Home Page</a> </li>
@@ -20,52 +54,87 @@
         </ul>
     </div>
 
+
+
+    <!-- Code to add chat box  ------------------------------------------>
     <div id="lhc_status_container_page">&nbsp;</div>
+    <script src="../js/chat.js"></script>
+    <!-- End chatbox code      ------------------------------------------>
 
 
 
-    <!-- Customized JS Script to add the chat box -->
-    <script type="text/javascript">
 
-        // Change this to get the users actual name
-        var userString = "autoName";
-        // Change this to get the users actual email
-        var userEmail = "autoEmail@email.com"
-        var LHCChatOptions = {};
-        LHCChatOptions.attr = new Array();
+    <!-- Google SignIn ------------------------------------------>
 
-        LHCChatOptions.opt = {
-            widget_height: 190,
-            widget_width: 300,
-            popup_height: 520,
-            popup_width: 500
-        };
+    <!-- Sign In with Google Button  -->
+    <div class="g-signin2" data-onsuccess="onGoogleSignIn"></div>
 
+    <!-- Generate Google User Token -->
+    <script>
+        function onGoogleSignIn(googleUser){
+            var id_token = googleUser.getAuthResponse().id_token;
+            var profile = googleUser.getBasicProfile();
 
-
-        LHCChatOptions.attr_prefill = new Array();
-
-        // have to change the settings in the console to hide the default username/email because that js is on their end
-        // pass in the userString and userEmail vars created earlier into the value field here.
-        LHCChatOptions.attr_prefill.push({'name':'username','value':userString,'show':'on'});
-        LHCChatOptions.attr_prefill.push({'name':'email','value':userEmail,'show':'on'});
-
-
-        console.log("The username for this chat is " + userString);
-        console.log("The email for this chat is " + userEmail);
-
-        (function() {
-            var po = document.createElement('script');
-            po.type = 'text/javascript';
-            po.async = true;
-            var refferer = (document.referrer) ? encodeURIComponent(document.referrer) : '';
-            var location = (document.location) ? encodeURIComponent(document.location) : '';
-            po.src = 'https://smarterppractice.livehelperchat.com/chat/getstatus/(click)/internal/(position)/bottom_right/(check_operator_messages)/true/(top)/350/(units)/pixels/(leaveamessage)/true?r=' + refferer + '&l=' + location;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(po, s);
-        })();
+            console.log("User's Secure Google token is: " + id_token);
+            console.log("User's Google ID is: "  + profile.getId()); // Do not send to your backend! Use an ID token instead.
+        }
     </script>
+    <!-- End of Google Code    ------------------------------------------>
 
+
+
+
+
+    <!-- LinkedIn Sign in Code ------------------------------------------>
+    <!-- Generate LinkedIn User Token -->
+    <script type="in/Login"></script>
+    <script>
+        function onLinkedInSignIn(){
+            IN.Event.on(IN, "auth", getProfileData)
+        }
+
+        // Handle the successful return from the API call
+        function onSuccess(data) {
+            console.log("User's LinkedIn ID is " + data);
+        }
+
+        // Handle an error response from the API call
+        function onError(error) {
+            console.log(error);
+        }
+
+        // Use the API call wrapper to request the member's basic profile data
+        function getProfileData() {
+            IN.API.Raw("/people/~/id").result(onSuccess).error(onError);
+        }
+    </script>
+    <!-- End of LinkedIn Code  ------------------------------------------>
+
+
+
+    <!-- Facebook Sign In Code  ----------------------------------------->
+    <script src="../js/facebook.js"></script>
+        <!--
+      Below we include the Login Button social plugin. This button uses
+      the JavaScript SDK to present a graphical Login button that triggers
+      the FB.login() function when clicked.
+    -->
+
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
+
+
+
+    <!-- Google Sign out button and sign out logic ----------------------->
+    <a href="#" onclick="signOut();">Google Sign out</a>
+    <script>
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function() {
+                console.log('User signed out.');
+            });
+        }
+    </script>
 
 </body>
 

@@ -4,13 +4,22 @@
 <head>
     <meta charset="UTF-8">
 
+    <!-- //TODO Change app client ID -->
+    <meta name="google-signin-client_id" content="312291613933-t9fcg4802l0ha5ig1r6gv8brv7bf0ff0.apps.googleusercontent.com">
+
     <title> Log In</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" type="text/css" href="../css/global.css">
     <link rel="stylesheet" type="text/css" href="../css/home.css">
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'>
-    </script>
+
+    <!-- Used this to create my own quick login authentication -->
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <!-- JQuery -->
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <!-- Used to implement Google Sign-In -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 </head>
 
@@ -22,6 +31,7 @@
     <div class="container">
         <div class="profile">
             <button class="profile__avatar" id="toggleProfile">
+                <!-- picture on the log in screen -->
                 <img src="https://pbs.twimg.com/profile_images/507231357135630336/6KNrJ8jN.jpeg" alt="Avatar" />
             </button>
             <div class="profile__form">
@@ -36,10 +46,12 @@
                     </div>
                     <div class="profile__footer">
 
+
                         <button class="btn" id="log_button">
                             Log In
                         </button>
 
+                        <!-- Authorizes the user with my database when user clicks login -->
                         <script>
                             document.getElementById("log_button").addEventListener("click", authTheUser);
 
@@ -73,6 +85,7 @@
                             Create User
                         </button>
 
+                        <!--  Adds the user to the database when the user clicks Create User-->
                         <script>
                             document.getElementById("createuser_button").addEventListener("click", createUserFunc2);
 
@@ -108,8 +121,6 @@
             </div>
         </div>
     </div>
-
-
 
     <script src="../js/login.js"></script>
 

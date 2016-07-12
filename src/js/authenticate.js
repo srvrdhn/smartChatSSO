@@ -1,6 +1,7 @@
 var ref = new Firebase("https://smarterplogin.firebaseio.com");
 ref.authWithPassword({
 
+  // gets credentials from the html form
   var html_email = document.getElementById('fieldUser');
   var html_passw = document.getElementById('fieldPassword');
 

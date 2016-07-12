@@ -69,9 +69,3 @@ ul#top_menu li a:hover {
     font-size: 1.3em;
     white-space: nowrap;
 }
-.google_button {
-    vertical-align: middle !important;
-    position: absolute;
-    top: 75px;
-    left: 715px;
-}
